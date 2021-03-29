@@ -31,7 +31,7 @@ class Services extends PureComponent {
                 className="p-0 px-2 d-flex align-items-center"
                 variant="outline-dark"
               >
-                <i style={{ fontSize: "15px" }} className="fas fa-search"></i>
+                <i style={{ fontSize: "15px" }} className="fas fa-search"/>
               </Button>
             </InputGroup.Append>
           </InputGroup>
@@ -40,7 +40,7 @@ class Services extends PureComponent {
           <Col className="d-flex align-items-center mb-3">
             <span className="h3 p-0 m-0">Фильтры:</span>
             {Object.keys(filters).map((item) => {
-              return <a className="ml-2">{filters[item]}</a>;
+              return <a href="#" className="ml-2">{filters[item]}</a>;
             })}
           </Col>
         </Row>

@@ -1,0 +1,25 @@
+{
+  "name": "diplom-salon-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm start --prefix frontend",
+    "server": "nodemon backend/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barakok/diplom-salon-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Barakok/diplom-salon-app/issues"
+  },
+  "homepage": "https://github.com/Barakok/diplom-salon-app#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "config": "^3.3.6"
+  }
+}
