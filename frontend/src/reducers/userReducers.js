@@ -1,4 +1,17 @@
-import {USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL} from '../actions/userActions';
+import {
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGOUT} from '../actions/userActions';
+
+// const initialState = {
+//   loading: null,
+//   userInfo: null,
+//   error: null
+// }
 
 export const userRegistrationReducer = (state = {}, action) => {
   switch (action.type){
@@ -8,6 +21,21 @@ export const userRegistrationReducer = (state = {}, action) => {
       return {loading: false, userInfo: action.payload};
     case USER_REGISTER_FAIL:
       return {loading: false, error: action.payload};
+    default:
+      return state;
+  }
+}
+
+export const userLoginReducer = (state = {}, action) => {
+  switch (action.type){
+    case USER_LOGIN_REQUEST:
+      return {loading: true};
+    case USER_LOGIN_SUCCESS:
+      return {loading: false, userInfo: action.payload};
+    case USER_LOGIN_FAIL:
+      return {loading: false, error: action.payload};
+    case USER_LOGOUT:
+      return {};
     default:
       return state;
   }

@@ -1,11 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
-const authRouter = require('./routers/auth.routes');
+const authRouter = require('./routers/authRoutes');
 const app = express();
 
 app.use(express.json());
-
 app.use('/', authRouter);
 
 const PORT = config.get('serverPort');

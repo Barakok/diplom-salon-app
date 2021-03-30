@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {register} from '../actions/userActions';
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 
-const Register = () => {
+const Register = ({location, history}) => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,9 +15,17 @@ const Register = () => {
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
-  const useRegister = useSelector(state => state.userRegistrationReducer);
-  const {loading, error, userInfo} = useRegister;
+  const userRegister = useSelector(state => state.userRegister);
+  const {loading, error, userInfo} = userRegister;
 
+  const redirect = location.search ? location.search.split("=")[1] : '/';
+
+  useEffect(() => {
+    console.log("useEffect => ", userInfo)
+    if(userInfo){
+      history.push(redirect);
+    }
+  },[history,userInfo,redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -26,14 +36,16 @@ const Register = () => {
     }
   }
 
-
   return(
     <Container className="mt-3">
       <Row clasName="justify-content-md-center">
         <Col xs={12} md={6}>
-          <h3>Зарегистрироваться</h3>
+          <h3 className="mt-3">Зарегистрироваться</h3>
+          {message && <Message variant="danger">{message}</Message>}
+          {error && <Message variant="danger">{error}</Message>}
+          {loading && <Loader/>}
           <Form
-          onSubmit={submitHandler}
+          onSubmit={submitHandler} className="mt-5"
           >
             <Form.Group controlId="name">
               <Form.Label>Ваше имя</Form.Label>
@@ -41,7 +53,6 @@ const Register = () => {
                 type="name"
                 placeholder="Введите Ваше имя"
                 value={name}
-                setValue={setName}
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
@@ -81,7 +92,7 @@ const Register = () => {
       <Row className="py-3">
         <Col>
           Уже есть аккаунт?
-          <Link to="/login"> Войти</Link>
+          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}> Войти</Link>
         </Col>
       </Row>
     </Container>

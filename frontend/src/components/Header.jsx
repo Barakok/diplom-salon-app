@@ -1,13 +1,18 @@
 import React, { PureComponent } from "react";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../actions/userActions";
 
-class Header extends PureComponent {
-  state = {
-    userLogin: false,
-  };
+const Header = () => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector(state => state.userLogin);
+  const {userInfo} = userLogin;
 
-  render() {
+  const logoutHandler = () => {
+    dispatch(logout());
+  }
+
     return (
       <header className="header-navbar header-shadow">
         <Container className="mt-3">
@@ -24,12 +29,12 @@ class Header extends PureComponent {
                 <LinkContainer to="/contact">
                   <Nav.Link>Контакты</Nav.Link>
                 </LinkContainer>
-                {this.state.userLogin ? (
-                  <NavDropdown title={"Stas"}>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name}>
                     <LinkContainer to="/account">
                       <NavDropdown.Item>Профиль</NavDropdown.Item>
                     </LinkContainer>
-                    <NavDropdown.Item>Выйти</NavDropdown.Item>
+                    <NavDropdown.Item onClick={logoutHandler}>Выйти</NavDropdown.Item>
                   </NavDropdown>
                 ) : (
                   <LinkContainer to="/login">
@@ -42,7 +47,6 @@ class Header extends PureComponent {
         </Container>
       </header>
     );
-  }
 }
 
 Header.propTypes = {};
