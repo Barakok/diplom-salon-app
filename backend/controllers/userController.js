@@ -28,7 +28,6 @@ const loginUser = expressAsyncHandler(async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         token: generateToken(user._id)
-
     });
   }catch (e) {
       console.log("Error");

@@ -1,14 +1,21 @@
 const {Schema, model} = require('mongoose');
 
-const serviceScheme = new Schema({
-    name: {type: String, required: true},
-    description: {type: String, required: true},
-    duration: {type: Number, required: true, default: 0},
-    price: {type: Number, required: true, default: 0},
-    filters: [String]
+const allServiceScheme = new Schema({
+  name: {type: String, required: true},
+  service:
+    [{
+    serviceName: {type: String, required: true},
+    miniService:
+      [{
+      name: {type: String, required: true},
+      description: {type: String, required: true},
+      duration: {type: Number, required: true, default: 0},
+      price: {type: Number, required: true, default: 0}
+    }]
+  }]
   },
   {
     timestamps: true
   });
 
-module.exports = model('Service', serviceScheme);
+module.exports = model('Service', allServiceScheme);

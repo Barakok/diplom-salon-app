@@ -8,6 +8,7 @@ import Services from "./screens/Services";
 import Home from "./screens/Home";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import ServiceDetail from "./screens/ServiceDetail";
 
 class App extends PureComponent {
   render() {
@@ -17,6 +18,7 @@ class App extends PureComponent {
         <main>
           <Container>
             <Route path="/login" component={Login} />
+            <Route path="/service/:id" component={ServiceDetail}/>
             <Route path="/contact" component={Contact} />
             <Route path="/registration" component={Register} />
             <Route path="/account" component={MyAccount} />

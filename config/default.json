@@ -1,5 +1,5 @@
 {
   "serverPort": 5000,
   "dbConnect": "mongodb+srv://barakok:123321@salondb.8ond5.mongodb.net/salonDB?retryWrites=true&w=majority",
-  "secretKey": "iLoveRomashova"
+  "secretKey": "iLoveValera"
 }

@@ -1,32 +1,18 @@
 import React from "react";
 import { Button, Card} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
-let cardArray = [
-  {
-    id: 0,
-    name: "Мужская стрижка",
-    description:
-      "Чтобы выглядеть стильно, начните с прически! Салон красоты Fleur приглашает записаться к парикмахеру-стилисту и предлагает доступные цены на все виды парикмахерских услуг. Салонные процедуры для волос помогут справиться",
-    price: "300р",
-    duration: "45",
-    category: ["hair", "forMen"],
-    image: "https://picsum.photos/300",
-  },
-];
-
-const ServiceItem = () => {
+const ServiceItem = ({service}) => {
+  const {id, name, image} = service;
   return (
-    <Card style={{ width: "20rem", marginBottom: "20px" }}>
-      <Card.Img variant="top" src={cardArray[0].image} />
-      <Card.Body>
-        <Card.Title>{cardArray[0].name}</Card.Title>
-        <Card.Text>{cardArray[0].description}</Card.Text>
-        <Card.Text>
-          Длительность процедуры: {cardArray[0].duration} мин.
-        </Card.Text>
-        <Card.Text>Стоимость: {cardArray[0].price}</Card.Text>
-        <Button variant="danger">Заказать</Button>
-      </Card.Body>
+    <Card style={{boxShadow: "0 0 10px black", width: "20rem", marginBottom: "20px" }}>
+      <Card.Img variant="top" src={image}/>
+        <Card.ImgOverlay style={{color: "white", boxShadow: "inset 0 0 0 1000px rgba(0,0,0,0.2)", fontSize: "15px"}}>
+          <Card.Title style={{marginTop:"50px",textAlign: "center"}}>{name}</Card.Title>
+          <Link style={{marginLeft: "70px"}} to={`/service/${id}`}>
+            <Button variant="dark">Подробнее</Button>
+          </Link>
+        </Card.ImgOverlay>
     </Card>
   );
 };
