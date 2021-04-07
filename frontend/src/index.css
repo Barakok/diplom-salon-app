@@ -1,12 +1,15 @@
 @import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap%27";
+* {
 
-*{
-    font-family: 'Poppins', sans-serif;
 }
 
 html, body {
     background: #b2dfdb;
 }
+.root {
+    max-width: 900px;
+}
+
 .home-screen {
     background-image: url("assets/HomeBackground.jpg");
     background-repeat: no-repeat;

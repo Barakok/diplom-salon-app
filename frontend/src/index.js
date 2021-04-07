@@ -9,7 +9,7 @@ import {store} from "./reducers/store";
 ReactDOM.render(
 <Provider store={store}>
   <React.StrictMode>
-    <App></App>
+    <App/>
   </React.StrictMode>
 </Provider>,
   document.getElementById("root")

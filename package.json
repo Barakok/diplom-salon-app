@@ -20,6 +20,8 @@
   "homepage": "https://github.com/Barakok/diplom-salon-app#readme",
   "dependencies": {
     "concurrently": "^6.0.0",
-    "config": "^3.3.6"
+    "config": "^3.3.6",
+    "date-fns": "^2.19.0",
+    "react-datepicker": "^3.7.0"
   }
 }

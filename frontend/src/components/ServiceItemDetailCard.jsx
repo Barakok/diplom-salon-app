@@ -1,8 +1,11 @@
 import React from 'react';
 import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
+import ModalCard from "./ModalCard";
+
 
 const ServiceItemDetailCard = ({serviceCard}) => {
   const {duration, price, name, description} = serviceCard;
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
       <Row className="m-0 mb-3" style={{boxShadow: "0 0 5px black"}}>
@@ -22,9 +25,13 @@ const ServiceItemDetailCard = ({serviceCard}) => {
                   <ListGroup.Item className="px-0 pl-1 ml-auto"><strong>Цена: {price}р</strong></ListGroup.Item>
                   <ListGroup.Item className="px-0 pl-1 ml-auto"><strong>Длительность: {duration}мин.</strong></ListGroup.Item>
                   <ListGroup.Item className="px-0 ml-auto">
-                    <Button variant="outline-danger">
+                    <Button variant="outline-danger" onClick={() => setModalShow(true)}>
                       Заказать
                     </Button>
+                    <ModalCard
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
