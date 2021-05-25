@@ -1,7 +1,7 @@
 {
   "name": "diplom-salon-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend->package-json->type: module",
   "main": "index.js",
   "scripts": {
     "client": "npm start --prefix frontend",
@@ -23,5 +23,6 @@
     "config": "^3.3.6",
     "date-fns": "^2.19.0",
     "react-datepicker": "^3.7.0"
-  }
+  },
+  "devDependencies": {}
 }

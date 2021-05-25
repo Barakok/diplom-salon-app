@@ -18,10 +18,10 @@ class App extends PureComponent {
         <main>
           <Container>
             <Route path="/login" component={Login} />
-            <Route path="/service/:id" component={ServiceDetail}/>
+            <Route path="/service/:id" component={ServiceDetail} />
             <Route path="/contact" component={Contact} />
             <Route path="/registration" component={Register} />
-            <Route path="/account" component={MyAccount} />
+            <Route path="/account/:userId" component={MyAccount} />
             <Route path="/services" component={Services} />
             <Route path="/" component={Home} exact />
           </Container>

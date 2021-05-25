@@ -1,16 +1,17 @@
-const {Schema, model} = require('mongoose');
-const mongoose = require('mongoose');
-const bookOrderScheme = new Schema({
-    name: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "User"},
-    serviceItems: [{
-      name: {type: String, required: true},
-      price: {type: Number, required: true},
-      orderTime: {type: Date, required: true},
-      service: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "Service"}
-    }]
+const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const bookOrderScheme = new Schema(
+  {
+    userId: Schema.Types.ObjectId,
+    miniServiceId: Schema.Types.ObjectId,
+    miniServiceName: { type: String, required: true },
+    orderDate: { type: String, required: true },
+    orderTime: { type: String, required: true },
+    status: { type: String, required: true },
   },
   {
-    timestamps: true
-  });
+    timestamps: true,
+  }
+);
 
-module.exports = model('BookOrder', bookOrderScheme);
+module.exports = model("BookOrder", bookOrderScheme);

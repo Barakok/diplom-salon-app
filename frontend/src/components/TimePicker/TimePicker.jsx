@@ -23,6 +23,8 @@ const TimePicker = (props) => {
   const [availableTime, setAvailableTime] = useState(availableTimeArray);
   const [selectTime, setSelectTime] = useState(valueDate);
 
+  const {onTimeClick} = props;
+
   useEffect(() => {
     const selDate = dateNormalize(props.selectData);
     const curDate = dateNormalize(new Date());
@@ -44,6 +46,7 @@ const TimePicker = (props) => {
   },[props.selectData])
 
   const onClickTime = (e) => {
+    onTimeClick(e.target.innerText);
     setSelectTime(e.target.innerText);
   }
 
