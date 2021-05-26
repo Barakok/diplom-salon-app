@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import TimePicker from "../TimePicker/TimePicker";
 import "./Calendar.css";
@@ -6,16 +6,18 @@ import ru from "date-fns/locale/ru";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder } from "../../actions/addOrderActions";
-
+import { loadingOrdersByDateAction } from "../../actions/loadingOrdersByDateActions";
 registerLocale("ru", ru);
 
 const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
-  const userId = "606059bb7a1e4d0c38122ba5";
+  const { currentWorker } = useSelector((state) => state.currentWorker);
+  const { Name, _id } = currentWorker;
+  let userId = "606059bb7a1e4d0c38122ba5";
   if (userInfo) {
-    const userId = userInfo._id;
+    userId = userInfo._id;
   }
   const [currentDate, setCurrentDate] = useState(startDate);
   const [currentTime, setCurrentTime] = useState(
@@ -31,13 +33,16 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
 
   const selectDate = (date) => {
     setStartDate(date);
-    console.log(date.toString());
+    const strDate = date.toString().substr(4, 11).replace(/\s/g, "");
+    dispatch(loadingOrdersByDateAction(strDate, _id));
   };
 
   const addOrderOnClick = (
     userId,
     miniServiceId,
     miniServiceName,
+    _id,
+    Name,
     orderDate,
     orderTime,
     status
@@ -47,6 +52,8 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
         userId,
         miniServiceId,
         miniServiceName,
+        _id,
+        Name,
         orderDate,
         orderTime,
         status
@@ -56,19 +63,12 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
 
   const onButtonClick = () => {
     modalHide();
-    console.log(
-      "Заказ:",
-      userId,
-      miniServiceId,
-      miniServiceName,
-      valueDate,
-      currentTime,
-      "Неоплачен"
-    );
     addOrderOnClick(
       userId,
       miniServiceId,
       miniServiceName,
+      _id,
+      Name,
       valueDate,
       currentTime,
       "Неоплачен"

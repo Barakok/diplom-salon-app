@@ -2,7 +2,6 @@ const expressAsyncHandler = require("express-async-handler");
 const Service = require("../models/serviceModel");
 
 const findMiniServiceById = expressAsyncHandler(async (req, res) => {
-  console.log("FUF", req.params.serviceId);
   const miniService = await Service.find({
     service: {
       $elemMatch: {

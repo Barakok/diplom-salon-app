@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import Calendar from "./Calendar/Calendar";
 const ModalCard = (props) => {
   const { show, onHide, miniServiceId, miniServiceName } = props;

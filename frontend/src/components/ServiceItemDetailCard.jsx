@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import ModalCard from "./ModalCard";
+import ModalWorker from "./ModalWorker";
 
 const ServiceItemDetailCard = ({ serviceCard }) => {
   const { duration, price, name, description, _id } = serviceCard;
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalWorkerShow, setModalWorkerShow] = useState(false);
+  const onOrderButtonClick = () => {
+    setModalWorkerShow(true);
+  };
+
   return (
     <>
       <Row className="m-0 mb-3" style={{ boxShadow: "0 0 5px black" }}>
@@ -28,10 +34,15 @@ const ServiceItemDetailCard = ({ serviceCard }) => {
                   <ListGroup.Item className="px-0 ml-auto">
                     <Button
                       variant="outline-danger"
-                      onClick={() => setModalShow(true)}
+                      onClick={onOrderButtonClick}
                     >
                       Заказать
                     </Button>
+                    <ModalWorker
+                      show={modalWorkerShow}
+                      onHide={() => setModalWorkerShow(false)}
+                      onModalCardShow={setModalShow}
+                    />
                     <ModalCard
                       show={modalShow}
                       onHide={() => setModalShow(false)}

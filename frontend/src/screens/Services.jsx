@@ -1,9 +1,5 @@
 import React, { PureComponent } from "react";
-import {
-  Container,
-  Row,
-  Col
-} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import ServiceItem from "../components/ServiceItem";
 import serviceCardArray from "../data/serviceCardArray";
 
@@ -15,7 +11,7 @@ class Services extends PureComponent {
           <Col className="col-12">
             <Row className="justify-content-around">
               {serviceCardArray.map((service) => {
-                return (<ServiceItem service={service}/>)
+                return <ServiceItem key={service._id} service={service} />;
               })}
             </Row>
           </Col>

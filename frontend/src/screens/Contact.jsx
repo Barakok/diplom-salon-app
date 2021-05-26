@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import { Button, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import filters from "../filters";
+import { Col, Container, Row } from "react-bootstrap";
+//import { LinkContainer } from "react-router-bootstrap";
+//import filters from "../filters";
 
 class Contact extends PureComponent {
   render() {
