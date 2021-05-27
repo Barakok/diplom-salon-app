@@ -18,7 +18,9 @@ const Login = ({ location, history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      if (userInfo.isAdmin) {
+        history.push("/adminPanel");
+      } else history.push(redirect);
     }
   }, [history, userInfo, redirect]);
 

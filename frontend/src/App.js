@@ -9,6 +9,7 @@ import Home from "./screens/Home";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ServiceDetail from "./screens/ServiceDetail";
+import AdminPanel from "./screens/AdminPanel";
 
 class App extends PureComponent {
   render() {
@@ -23,6 +24,7 @@ class App extends PureComponent {
             <Route path="/registration" component={Register} />
             <Route path="/account/:userId" component={MyAccount} />
             <Route path="/services" component={Services} />
+            <Route path="/adminPanel" component={AdminPanel} />
             <Route path="/" component={Home} exact />
           </Container>
         </main>
