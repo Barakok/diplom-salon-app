@@ -1,5 +1,5 @@
 const expressAsyncHandler = require("express-async-handler");
-const Service = require('../models/serviceModel');
+const Service = require("../models/serviceModel");
 
 // const getServices = expressAsyncHandler(async (req,res) => {
 //   try{
@@ -10,14 +10,12 @@ const Service = require('../models/serviceModel');
 //   }
 // });
 
-const getServicesById = expressAsyncHandler(async (req,res) => {
-    const service = await Service.findById(req.params.id);
-    console.log(service);
-    if(service){
-      return res.json(service);
-    }else throw new Error("Сервис не найден");
-
+const getServicesById = expressAsyncHandler(async (req, res) => {
+  const service = await Service.findById(req.params.id);
+  if (service) {
+    return res.json(service);
+  } else throw new Error("Сервис не найден");
 });
 
 //module.exports = getServices;
-module.exports =  getServicesById;
+module.exports = getServicesById;

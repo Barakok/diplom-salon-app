@@ -24,7 +24,7 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
     currentDate.toString().substr(16, 5)
   );
 
-  const valueDate = currentDate.toString().substr(4, 11);
+  const valueDate = currentDate;
 
   const isWeekday = (date) => {
     const day = date.getDay();
@@ -47,6 +47,13 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
     orderTime,
     status
   ) => {
+    const validDate = new Date(
+      orderDate.getFullYear(),
+      orderDate.getMonth(),
+      orderDate.getDate(),
+      +orderTime.substr(0, 2),
+      +orderTime.substr(3, 2)
+    );
     dispatch(
       addOrder(
         userId,
@@ -54,7 +61,7 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
         miniServiceName,
         _id,
         Name,
-        orderDate,
+        validDate,
         orderTime,
         status
       )

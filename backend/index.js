@@ -8,6 +8,7 @@ const addOrderRouter = require("./routers/addOrderRouter");
 const findMiniServiceById = require("./routers/findMiniServiceByIdRouter");
 const getAllWorkers = require("./routers/getAllWorkersRouter");
 const findOrderByDateRouter = require("./routers/findOrderByDateRouter");
+const findOrderByWeekRouter = require("./routers/findOrdersByWeekRouter");
 const app = express();
 
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use("/", loadingOrderRouter);
 app.use("/", findMiniServiceById);
 app.use("/", getAllWorkers);
 app.use("/", findOrderByDateRouter);
+app.use("/", findOrderByWeekRouter);
 
 const PORT = config.get("serverPort");
 

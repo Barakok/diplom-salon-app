@@ -8,6 +8,16 @@ import loadingOrdersReducer from "./loadingOrderReducer";
 import getWorkersReducer from "./getWorkersReducer";
 import { currentWorkerReducer } from "./currentWorkerReducer";
 import loadingOrdersByDateReducer from "./loadingOrderByDateReducer";
+import loadingOrdersByWeekeducer from "./loadingOrdersByWeekForOneWorkerReducer";
+import getAllWorkersReducer from "./getAllWorkersReducer";
+
+const initialState = {
+  userLogin: {
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
+  },
+};
 
 const rootReducer = combineReducers({
   userRegister: userRegistrationReducer,
@@ -18,9 +28,12 @@ const rootReducer = combineReducers({
   workers: getWorkersReducer,
   currentWorker: currentWorkerReducer,
   ordersByDate: loadingOrdersByDateReducer,
+  allOrdersByWeek: loadingOrdersByWeekeducer,
+  allWorkers: getAllWorkersReducer,
 });
 
 export const store = createStore(
   rootReducer,
+  initialState,
   composeWithDevTools(applyMiddleware(thunk))
 );

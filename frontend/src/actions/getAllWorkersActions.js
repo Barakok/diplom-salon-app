@@ -1,18 +1,18 @@
 import axios from "axios";
 
-export const LOADING_WORKERS_REQUEST = "LOADING_WORKERS_REQUEST";
-export const LOADING_WORKERS_SUCCESS = "LOADING_WORKERS_SUCCESS";
-export const LOADING_WORKERS_FAIL = "LOADING_WORKERS_FAIL";
+export const LOADING_ALLWORKERS_REQUEST = "LOADING_ALLWORKERS_REQUEST";
+export const LOADING_ALLWORKERS_SUCCESS = "LOADING_ALLWORKERS_SUCCESS";
+export const LOADING_ALLWORKERS_FAIL = "LOADING_ALLWORKERS_FAIL";
 
-export const loadingWorkersAction = (serviceId) => async (dispatch) => {
+export const loadingAllWorkersAction = () => async (dispatch) => {
   try {
-    dispatch({ type: LOADING_WORKERS_REQUEST });
+    dispatch({ type: LOADING_ALLWORKERS_REQUEST });
 
-    const { data } = await axios.get(`/workers/${serviceId}`);
-    dispatch({ type: LOADING_WORKERS_SUCCESS, payload: data });
+    const { data } = await axios.get(`/workers`);
+    dispatch({ type: LOADING_ALLWORKERS_SUCCESS, payload: data });
   } catch (e) {
     dispatch({
-      type: LOADING_WORKERS_FAIL,
+      type: LOADING_ALLWORKERS_FAIL,
       payload:
         e.response && e.response.data.message
           ? e.response.data.message

@@ -8,7 +8,6 @@ const findOrdersByDate = expressAsyncHandler(async (req, res) => {
     req.query.orderDate.toString().substr(3, 2) +
     " " +
     req.query.orderDate.toString().substr(5, 4);
-  console.log(date);
   const orders = await BookOrder.find({
     orderDate: date,
     workerId: req.query.workerId,

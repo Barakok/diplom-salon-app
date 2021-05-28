@@ -3,7 +3,7 @@ import { Row, Col, Button } from "react-bootstrap";
 
 export default function VisitsRequestItem() {
   return (
-    <Row className="my-3 align-items-center">
+    <Row className="my-3 align-items-center" style={{ fontWeight: 600 }}>
       <Col>
         <span>Визит №</span>
       </Col>

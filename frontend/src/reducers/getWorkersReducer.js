@@ -2,7 +2,7 @@ import {
   LOADING_WORKERS_REQUEST,
   LOADING_WORKERS_SUCCESS,
   LOADING_WORKERS_FAIL,
-} from "../actions/getAllWorkersActions";
+} from "../actions/getAllWorkersForOneServiceActions";
 
 const initialState = {
   allWorkers: [],

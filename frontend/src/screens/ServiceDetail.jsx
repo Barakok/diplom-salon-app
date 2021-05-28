@@ -12,7 +12,7 @@ import { loadingServiceDetail } from "../actions/serviceActions";
 import ServiceItemDetail from "../components/ServiceItemDetail";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
-import { loadingWorkersAction } from "../actions/getAllWorkersActions";
+import { loadingWorkersAction } from "../actions/getAllWorkersForOneServiceActions";
 
 const ServiceDetail = ({ match }) => {
   const search = (items, term) => {

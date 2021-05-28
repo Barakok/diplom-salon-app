@@ -3,6 +3,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import {} from "react-bootstrap";
 import VisitsInWeek from "../components/VisitsInWeek";
 import VisitsRequest from "../components/VisitsRequest";
+import Workers from "../components/Workers";
 
 export default function AdminPanel() {
   return (
@@ -33,7 +34,7 @@ export default function AdminPanel() {
                     <VisitsRequest />
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
-                    <VisitsInWeek />
+                    <Workers />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

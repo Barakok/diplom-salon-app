@@ -6,7 +6,7 @@ const bookOrderScheme = new Schema(
     miniServiceName: { type: String, required: true },
     workerId: Schema.Types.ObjectId,
     workerName: { type: String, required: true },
-    orderDate: { type: String, required: true },
+    orderDate: { type: Date, required: true },
     orderTime: { type: String, required: true },
     status: { type: String, required: true },
   },
