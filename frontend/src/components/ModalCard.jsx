@@ -18,6 +18,8 @@ const ModalCard = (props) => {
           modalHide={props.onHide}
           miniServiceId={miniServiceId}
           miniServiceName={miniServiceName}
+          visitDate={new Date().toString()}
+          isButton={true}
         />
       </Modal.Body>
     </Modal>

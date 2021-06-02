@@ -9,20 +9,33 @@ import { addOrder } from "../../actions/addOrderActions";
 import { loadingOrdersByDateAction } from "../../actions/loadingOrdersByDateActions";
 registerLocale("ru", ru);
 
-const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
-  const [startDate, setStartDate] = useState(new Date());
+const Calendar = ({
+  modalHide,
+  miniServiceId,
+  miniServiceName,
+  isButton,
+  visitDate,
+  visitTime,
+  onDateChange,
+  onTimeChange,
+}) => {
+  const [startDate, setStartDate] = useState(new Date(visitDate));
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
   const { currentWorker } = useSelector((state) => state.currentWorker);
   const { Name, _id } = currentWorker;
   let userId = "606059bb7a1e4d0c38122ba5";
+
   if (userInfo) {
     userId = userInfo._id;
   }
+  let valueTime = new Date().toString().substr(16, 5);
+
+  if (+valueTime.substr(3, 2) < 30) {
+    valueTime = valueTime.substr(0, 2) + ":" + "30";
+  } else valueTime = +valueTime.substr(0, 2) + 1 + ":" + "00";
   const [currentDate, setCurrentDate] = useState(startDate);
-  const [currentTime, setCurrentTime] = useState(
-    currentDate.toString().substr(16, 5)
-  );
+  const [currentTime, setCurrentTime] = useState(valueTime);
 
   const valueDate = currentDate;
 
@@ -33,6 +46,9 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
 
   const selectDate = (date) => {
     setStartDate(date);
+    if (onDateChange) {
+      onDateChange(date);
+    }
     const strDate = date.toString().substr(4, 11).replace(/\s/g, "");
     dispatch(loadingOrdersByDateAction(strDate, _id));
   };
@@ -78,17 +94,23 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
       Name,
       valueDate,
       currentTime,
-      "Неоплачен"
+      userInfo ? "Неоплачен" : "Необработан"
     );
   };
 
   const onTimeClick = (time) => {
+    if (onTimeChange) {
+      onTimeChange(time);
+    }
+
     setCurrentTime(time);
   };
 
+  const visitDateDateFormat = new Date(visitDate);
+
   return (
     <Container>
-      <Row className={"mt-3 justify-content-center align-items-center"}>
+      <Row className={" justify-content-center align-items-center"}>
         <Col className="col-3 mr-3">
           <DatePicker
             selected={startDate}
@@ -103,13 +125,19 @@ const Calendar = ({ modalHide, miniServiceId, miniServiceName }) => {
           />
         </Col>
         <Col className="col-3">
-          <TimePicker selectData={startDate} onTimeClick={onTimeClick} />
+          <TimePicker
+            selectData={startDate}
+            onTimeClick={onTimeClick}
+            valueTime={visitTime ? visitTime : valueTime}
+          />
         </Col>
-        <Col className="col-3">
-          <Button variant="outline-danger" onClick={onButtonClick}>
-            Подтвердить
-          </Button>
-        </Col>
+        {isButton ? (
+          <Col className="col-3">
+            <Button variant="outline-danger" onClick={onButtonClick}>
+              Подтвердить
+            </Button>
+          </Col>
+        ) : null}
       </Row>
     </Container>
   );

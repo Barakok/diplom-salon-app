@@ -45,7 +45,7 @@ export default function VisitsInWeek() {
               </InputGroup>
             </Col>
             {allWorkers.map((worker) => (
-              <VisitInWeekItem worker={worker} />
+              <VisitInWeekItem key={worker._id} worker={worker} />
             ))}
           </Col>
         </Row>

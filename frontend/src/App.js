@@ -10,6 +10,7 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ServiceDetail from "./screens/ServiceDetail";
 import AdminPanel from "./screens/AdminPanel";
+import chat from "./screens/chat";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/account/:userId" component={MyAccount} />
           <Route path="/services" component={Services} />
           <Route path="/adminPanel" component={AdminPanel} />
+          <Route path="/chat" component={chat} />
           <Route path="/" component={Home} exact />
         </Container>
       </main>

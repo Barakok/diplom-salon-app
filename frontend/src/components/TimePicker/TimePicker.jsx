@@ -13,6 +13,8 @@ import {
 import "./TimePicker.css";
 
 const TimePicker = (props) => {
+  const { onTimeClick, valueTime } = props;
+
   const availableTimeArray = [
     [
       { disable: false, time: "08:00" },
@@ -39,24 +41,17 @@ const TimePicker = (props) => {
       { disable: false, time: "15:30" },
     ],
   ];
-  let valueDate = new Date().toString().substr(16, 5);
-  if (+valueDate.substr(3, 2) > 30) {
-    valueDate = valueDate.substr(0, 2) + ":" + "30";
-  } else valueDate = +valueDate.substr(0, 2) + 1 + ":" + "00";
   const [availableTime, setAvailableTime] = useState(availableTimeArray);
-  const [selectTime, setSelectTime] = useState(valueDate);
-
-  const { onTimeClick } = props;
+  const [selectTime, setSelectTime] = useState(valueTime);
 
   useEffect(() => {
     const selDate = dateNormalize(props.selectData);
     const curDate = dateNormalize(new Date());
 
     if (selDate === curDate) {
-      console.log("useEffect");
       const tmpArray = availableTimeArray.map((rowTime) => {
         return rowTime.map((item) => {
-          if (item.time < valueDate) {
+          if (item.time < valueTime) {
             item.disable = true;
           }
           return item;
@@ -82,7 +77,6 @@ const TimePicker = (props) => {
         <Col className="m-0 p-0 col-9">
           <InputGroup>
             <DropdownButton
-              focusFirstItemOnShow="false"
               title={selectTime}
               id="input-group-dropdown-1"
               varian="outline-dark"
