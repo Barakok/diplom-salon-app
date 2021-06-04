@@ -8,8 +8,7 @@ export const loadingOrdersAction = (userId) => async (dispatch) => {
   try {
     dispatch({ type: LOADING_ORDERS_REQUEST });
 
-    const { data } = await axios.post(`/loadingOrders`);
-    //const {serviceName} = await axios.get(`/miniService/${userId}`);
+    const { data } = await axios.get(`/loadingOrders/${userId}`);
     dispatch({ type: LOADING_ORDERS_SUCCESS, payload: data });
   } catch (e) {
     dispatch({

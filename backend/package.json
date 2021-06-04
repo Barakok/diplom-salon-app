@@ -16,6 +16,7 @@
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.2",
+    "nanoid": "^3.1.23",
     "socket.io": "^4.1.2",
     "ws": "^7.4.6"
   },

@@ -15,7 +15,37 @@ const getUserInfoById = require("./routers/getUserByIdRouter");
 const changeOrder = require("./routers/changeOrderRouter");
 const deleteOrder = require("./routers/deleteOrderRouter");
 const getOrdersRequest = require("./routers/getOrdersRequestRouter");
+const { join } = require("path");
 const app = express();
+
+const registerMessageHendlers = require("./handlers/messageHandlers");
+const registerUserHendlers = require("./handlers/userHandlers");
+const server = require("http").Server(app);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+const onConnection = (socket) => {
+  console.log("User Connection");
+
+  const { roomId } = socket.handshake.query;
+
+  socket.roomId = roomId;
+
+  socket.join(roomId);
+
+  registerMessageHendlers(io, socket);
+  registerUserHendlers(io, socket);
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+    socket.leave(roomId);
+  });
+};
+
+io.on("connection", onConnection);
 
 app.use(express.json());
 app.use("/", authRouter);
@@ -37,6 +67,6 @@ const PORT = config.get("serverPort");
 
 connectDB();
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server started in port", PORT);
 });
